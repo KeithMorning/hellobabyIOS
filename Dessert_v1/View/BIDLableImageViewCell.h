@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BIDAccount.h"
 @interface BIDLableImageViewCell : UITableViewCell
-
++(CGFloat)cellHeight;
 @end

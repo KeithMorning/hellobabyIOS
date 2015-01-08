@@ -42,6 +42,7 @@
 		D35848AB1A5BD5E300515895 /* BIDLabelValueViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D35848AA1A5BD5E300515895 /* BIDLabelValueViewCell.m */; };
 		D35848AE1A5BD5FF00515895 /* BIDLableImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D35848AD1A5BD5FF00515895 /* BIDLableImageViewCell.m */; };
 		D35848B11A5BDBCE00515895 /* placeholderRound25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D35848B01A5BDBCE00515895 /* placeholderRound25@2x.png */; };
+		D363DAD11A5D17C0009EFC4F /* UIImageView+comm.m in Sources */ = {isa = PBXBuildFile; fileRef = D363DAD01A5D17C0009EFC4F /* UIImageView+comm.m */; };
 		D373A2C41A32AA65001A3B11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D373A2C21A32AA65001A3B11 /* Main.storyboard */; };
 		D373A2CE1A32AAB4001A3B11 /* BIDCommcode.m in Sources */ = {isa = PBXBuildFile; fileRef = D373A2C71A32AAB4001A3B11 /* BIDCommcode.m */; };
 		D373A2D01A32AAB4001A3B11 /* BIDPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = D373A2CB1A32AAB4001A3B11 /* BIDPoster.m */; };
@@ -152,6 +153,8 @@
 		D35848AC1A5BD5FF00515895 /* BIDLableImageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIDLableImageViewCell.h; sourceTree = "<group>"; };
 		D35848AD1A5BD5FF00515895 /* BIDLableImageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIDLableImageViewCell.m; sourceTree = "<group>"; };
 		D35848B01A5BDBCE00515895 /* placeholderRound25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholderRound25@2x.png"; sourceTree = "<group>"; };
+		D363DACF1A5D17C0009EFC4F /* UIImageView+comm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+comm.h"; sourceTree = "<group>"; };
+		D363DAD01A5D17C0009EFC4F /* UIImageView+comm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+comm.m"; sourceTree = "<group>"; };
 		D373A2C31A32AA65001A3B11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Dessert_v1/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D373A2C61A32AAB4001A3B11 /* BIDCommcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIDCommcode.h; sourceTree = "<group>"; };
 		D373A2C71A32AAB4001A3B11 /* BIDCommcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIDCommcode.m; sourceTree = "<group>"; };
@@ -318,6 +321,8 @@
 			children = (
 				D31D4E391A55DF13005D2256 /* UIColor+CreateMethods.h */,
 				D31D4E3A1A55DF13005D2256 /* UIColor+CreateMethods.m */,
+				D363DACF1A5D17C0009EFC4F /* UIImageView+comm.h */,
+				D363DAD01A5D17C0009EFC4F /* UIImageView+comm.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -777,6 +782,7 @@
 				D31D4E2F1A55D603005D2256 /* AMSlideMenuRightTableViewController.m in Sources */,
 				D373A2D11A32AAB4001A3B11 /* BIDUser.m in Sources */,
 				D373A32B1A32ADD7001A3B11 /* BIDRegisterController.m in Sources */,
+				D363DAD11A5D17C0009EFC4F /* UIImageView+comm.m in Sources */,
 				D31D4E2E1A55D603005D2256 /* AMSlideMenuRightMenuSegue.m in Sources */,
 				D373A3191A32AACA001A3B11 /* AFURLResponseSerialization.m in Sources */,
 				D373A31E1A32AACA001A3B11 /* AFNetworkActivityIndicatorManager.m in Sources */,

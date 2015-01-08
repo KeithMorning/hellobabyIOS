@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BIDLabelValueViewCell : UITableViewCell
-
+-(void)setCellTile:(NSString *)title setCellValue:(NSString *)value;
++(CGFloat)rowHeight;
 @end

@@ -14,6 +14,7 @@
 #import "BIDMainHeaderView.h"
 #import "BIDMainTableViewCell.h"
 #import "UIKit+AFNetworking.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 @implementation BIDMainController
 
 - (IBAction)LogOff:(id)sender {
@@ -147,8 +148,17 @@
     }
     NSInteger rownum=indexPath.row;
     NSDictionary *poster=[posters objectAtIndex:rownum];
+    //DebugLog(poster);
     cell.Username.text=[poster objectForKey:@"User_Name"];
     cell.PosterContent.text=[poster objectForKey:@"PosterInput"];
+    NSString *str_photourl=[poster objectForKey:@"UserPhoto"];
+    if (![str_photourl isEqualToString:@""]) {
+        NSString *mainurl=@Key_MainUrl;
+        str_photourl=[mainurl stringByAppendingString:str_photourl];
+        NSURL *photoUrl=[NSURL URLWithString:str_photourl];
+        [cell.UserImage sd_setImageWithURL:photoUrl];
+    }
+
     return cell;
     
 }

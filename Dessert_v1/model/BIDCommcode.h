@@ -17,6 +17,7 @@
 #define  ServerUrl "http://192.168.211.1/ServiceForIOS.svc/"
 #define PoserUrl "http://192.168.211.1/ServiceForIOSPoster.svc/"
 #define FileTranUrl "http://192.168.211.1/ServiceForIOSFile.svc/"
+#define Key_MainUrl "http://192.168.211.1/"
 //#define  ServerUrl "http://182.92.230.154:2122/ServiceForIOS.svc/"
 //#define PoserUrl "http://182.92.230.154:2122/ServiceForIOSPoster.svc/"
 #define getPosterResult @"GetPosterResult"

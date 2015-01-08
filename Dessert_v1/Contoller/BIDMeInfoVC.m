@@ -7,8 +7,10 @@
 //
 
 #import "BIDMeInfoVC.h"
-#import "UIViewController+AMSlideMenu.h"
 #import "BIDCommcode.h"
+#import "BIDLabelValueViewCell.h"
+#import "BIDLableImageViewCell.h"
+#import "BIDAFNetWork.h"
 @interface BIDMeInfoVC ()
 
 @end
@@ -23,7 +25,7 @@ static NSString *cellLableImage=@"cellLableImage";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.title=@"个人信息";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -48,76 +50,143 @@ static NSString *cellLableImage=@"cellLableImage";
     // Return the number of rows in the section.
     return 3;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44;
-}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row==0) {//头像单元
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellLableImage];
+    if (indexPath.row==0 &&indexPath.section==0) {//头像单元
+    BIDLableImageViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellLableImage];
     if (cell==nil) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellLableImage];
+        cell=[[BIDLableImageViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellLableImage];
     }
     return  cell;
     }
     else{//信息单元
-        UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellLableValue];
+        
+        BIDLabelValueViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellLableValue];
+        if (cell==nil) {
+            cell=[[BIDLabelValueViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellLableValue];
+        }
+        switch (indexPath.section) {
+            case 0:
+                switch (indexPath.row) {
+                    case 1://email
+                        [cell setCellTile:@"Email" setCellValue:[BIDAccount GetAccount].Email];
+                        break;
+                    case 2://Sex
+                        [cell setCellTile:@"性别" setCellValue:[BIDAccount GetAccount].Sex];
+                        break;
+                    default:
+                        break;
+                }
+                break;
+                
+            default:
+                break;
+        }
         return cell;
     }
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat cellheight;
+    if (indexPath.section==0 &&indexPath.row==0) {
+        cellheight=[BIDLableImageViewCell cellHeight];
+    }else{
+        cellheight=[BIDLabelValueViewCell rowHeight];
+    }
+    return cellheight;
+}
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    __weak typeof(self) weakself=self;
+    switch (indexPath.section) {
+        case 0://第一分组
+            switch (indexPath.row) {
+                case 0://头像
+                    [weakself changeUserPhoto];
+                    break;
+                    
+                case 1:
+                    
+                    break;
+            }
+            break;
+            
+        default:
+            break;
+    }
     
-    // Configure the cell...
+}
+
+-(void)changeUserPhoto{
+    UIActionSheet *actionsheet=[[UIActionSheet alloc]initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册", nil];
+    [actionsheet showInView:[UIApplication sharedApplication].keyWindow];
+}
+
+#pragma actionSheet delegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==2) {
+        return;
+    }
+    UIImagePickerController *imagepickervc=[[UIImagePickerController alloc]init];
+    imagepickervc.allowsEditing=YES;
+    imagepickervc.delegate=self;
+    switch (buttonIndex) {
+        case 0:
+            imagepickervc.sourceType=UIImagePickerControllerSourceTypeCamera;
+            break;
+        case 1:
+            imagepickervc.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+            break;
+    }
+    [self presentViewController:imagepickervc animated:YES completion:nil];
+}
+
+#pragma imagePickerController delegate
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *editedImage,*orginalImage;
+    editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
     
-    return cell;
+    [BIDAFNetWork upLoadImage:editedImage Urlstring:@"UploadFile" name:[self CreateUserImageName] successBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"success %@",responseObject);
+        [BIDAccount GetAccount].PhotoUrl=[responseObject objectForKey:@"SaveImageResult"];
+        [self.tableView reloadData];
+    } failureBlcok:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"failed,%@",error);
+    } processBlock:^(CGFloat processvalue) {
+        NSLog(@"%f",processvalue);
+    }];
+    
+    if (picker.sourceType==UIImagePickerControllerSourceTypeCamera) {
+        orginalImage=[info objectForKey:UIImagePickerControllerOriginalImage];
+        SEL selectorToCall=@selector(image:didFinishSavingWithError:contextInfo:);
+        UIImageWriteToSavedPhotosAlbum(orginalImage, self, selectorToCall, NULL);
+    }
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma if this save success
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    if (error==nil) {
+        NSLog(@"save successfully");
+    }else{
+        NSLog(@"save failed %@",error);
+    }
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+#pragma imagePickerController cancel
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+#pragma  create the photo name
+-(NSString *)CreateUserImageName{
+    BIDAccount *account=[BIDAccount GetAccount];
+    NSString *userId=account.user_id;
+    NSDateFormatter *dateForm=[[NSDateFormatter alloc]init];
+    [dateForm setDateFormat:@"yyyyMMddHHmmss"];
+    NSString *date_str=[dateForm stringFromDate:[NSDate date]];
+    NSString *createName=[NSString stringWithFormat:@"%@_%@.jpg",date_str,userId];
+    return createName;
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

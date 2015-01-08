@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BIDMeInfoVC : UITableViewController<UITableViewDelegate,UITableViewDataSource>
+@interface BIDMeInfoVC : UITableViewController<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @end

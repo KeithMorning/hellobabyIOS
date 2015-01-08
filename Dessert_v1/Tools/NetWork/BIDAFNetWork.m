@@ -43,9 +43,9 @@
         imagedata=UIImageJPEGRepresentation(image, 1024*1000/(float)imagedata.length);
     }
     NSLog(@"imagedata size :%lu",imagedata.length);
-    NSString *filename=@"test.jpg";
+    NSString *filename=name;
     AFHTTPRequestOperationManager *AFManager=[[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:@FileTranUrl]];
-    AFHTTPRequestOperation *operation=[AFManager POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formdata){[formdata appendPartWithFileData:imagedata name:name fileName:filename mimeType:@"image/jpeg"];} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    AFHTTPRequestOperation *operation=[AFManager POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formdata){[formdata appendPartWithFileData:imagedata name:@"image" fileName:filename mimeType:@"image/jpeg"];} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (success) {
             success(operation,responseObject);
         }

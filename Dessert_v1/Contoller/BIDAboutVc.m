@@ -8,6 +8,7 @@
 
 #import "BIDAboutVc.h"
 #import  "BIDAFNetWork.h"
+#import "BIDAccount.h"
 @interface BIDAboutVc ()
 
 @end
@@ -59,8 +60,9 @@
     UIImage *editedImage,*orginalImage;
     editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
     
-    [BIDAFNetWork upLoadImage:editedImage Urlstring:@"UploadFile" name:@"file" successBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"success");
+    [BIDAFNetWork upLoadImage:editedImage Urlstring:@"UploadFile" name:[self CreateUserImageName] successBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"success %@",responseObject);
+        [BIDAccount GetAccount].PhotoUrl=[responseObject objectForKey:@"SaveImageResult"];
     } failureBlcok:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"failed,%@",error);
     } processBlock:^(CGFloat processvalue) {
@@ -85,5 +87,14 @@
 }
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+-(NSString *)CreateUserImageName{
+    BIDAccount *account=[BIDAccount GetAccount];
+    NSString *userId=account.user_id;
+    NSDateFormatter *dateForm=[[NSDateFormatter alloc]init];
+    [dateForm setDateFormat:@"yyyyMMddHHmmss"];
+    NSString *date_str=[dateForm stringFromDate:[NSDate date]];
+    NSString *createName=[NSString stringWithFormat:@"%@_%@.jpg",date_str,userId];
+    return createName;
 }
 @end
