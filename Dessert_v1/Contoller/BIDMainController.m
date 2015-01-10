@@ -32,7 +32,7 @@
 }
 #pragma firstload meathod
 -(void)mainpagefistLoad{
-    self.tableView.tableFooterView.hidden=YES;
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
