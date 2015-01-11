@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7A0E8984F8A8C3DE51325ED3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4904163A056DA15D13F248B7 /* libPods.a */; };
 		D301BB991A554D2600184B2A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D301BB981A554D2600184B2A /* Default-568h@2x.png */; };
+		D30D0C8E1A62B1AE0099DB97 /* UIButton+Comm.m in Sources */ = {isa = PBXBuildFile; fileRef = D30D0C8D1A62B1AD0099DB97 /* UIButton+Comm.m */; };
+		D30D0C911A62B1E70099DB97 /* UIbuttonAddBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D30D0C901A62B1E70099DB97 /* UIbuttonAddBlock.m */; };
 		D31133AD1A611CF700908EFC /* NSObject+ObjectMap.m in Sources */ = {isa = PBXBuildFile; fileRef = D31133AC1A611CF700908EFC /* NSObject+ObjectMap.m */; };
 		D31133B01A6120CA00908EFC /* BIDPosters.m in Sources */ = {isa = PBXBuildFile; fileRef = D31133AF1A6120CA00908EFC /* BIDPosters.m */; };
 		D31133B61A614A2A00908EFC /* poster_arrow_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D31133B21A614A2A00908EFC /* poster_arrow_down@2x.png */; };
@@ -104,6 +106,10 @@
 		4904163A056DA15D13F248B7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B5BD69324C9D1CE35551F1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D301BB981A554D2600184B2A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D30D0C8C1A62B1AD0099DB97 /* UIButton+Comm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Comm.h"; sourceTree = "<group>"; };
+		D30D0C8D1A62B1AD0099DB97 /* UIButton+Comm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Comm.m"; sourceTree = "<group>"; };
+		D30D0C8F1A62B1E70099DB97 /* UIbuttonAddBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIbuttonAddBlock.h; sourceTree = "<group>"; };
+		D30D0C901A62B1E70099DB97 /* UIbuttonAddBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIbuttonAddBlock.m; sourceTree = "<group>"; };
 		D31133AB1A611CF700908EFC /* NSObject+ObjectMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+ObjectMap.h"; path = "../Tools/Unite/NSObject+ObjectMap.h"; sourceTree = "<group>"; };
 		D31133AC1A611CF700908EFC /* NSObject+ObjectMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ObjectMap.m"; path = "../Tools/Unite/NSObject+ObjectMap.m"; sourceTree = "<group>"; };
 		D31133AE1A6120CA00908EFC /* BIDPosters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIDPosters.h; sourceTree = "<group>"; };
@@ -365,6 +371,8 @@
 				D363DAD01A5D17C0009EFC4F /* UIImageView+comm.m */,
 				D39F77A81A625868007A161A /* NSString+comm.h */,
 				D39F77A91A625868007A161A /* NSString+comm.m */,
+				D30D0C8C1A62B1AD0099DB97 /* UIButton+Comm.h */,
+				D30D0C8D1A62B1AD0099DB97 /* UIButton+Comm.m */,
 			);
 			name = Categories;
 			path = ../Categories;
@@ -387,6 +395,8 @@
 				D33935C31A36AB8A009637CD /* BIDViewJump.m */,
 				D31133BA1A615A3D00908EFC /* UIImageBlockView.h */,
 				D31133BB1A615A3D00908EFC /* UIImageBlockView.m */,
+				D30D0C8F1A62B1E70099DB97 /* UIbuttonAddBlock.h */,
+				D30D0C901A62B1E70099DB97 /* UIbuttonAddBlock.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -807,12 +817,14 @@
 				D3169E1A1A33502B00B0DB42 /* BIDJsonToDictionary.m in Sources */,
 				D3FDF9FF1A5ABC3B00E95BDB /* AMLeftMenuVCT.m in Sources */,
 				D33935CA1A36B6EC009637CD /* BIDNewPosterController.m in Sources */,
+				D30D0C8E1A62B1AE0099DB97 /* UIButton+Comm.m in Sources */,
 				D373A3231A32AACA001A3B11 /* UIProgressView+AFNetworking.m in Sources */,
 				D33935D21A36C0CB009637CD /* BIDMainFooterView.m in Sources */,
 				D31D4E2A1A55D603005D2256 /* AMSlideMenuContentSegue.m in Sources */,
 				D35848AB1A5BD5E300515895 /* BIDLabelValueViewCell.m in Sources */,
 				D373A3241A32AACA001A3B11 /* UIRefreshControl+AFNetworking.m in Sources */,
 				D373A3251A32AACA001A3B11 /* UIWebView+AFNetworking.m in Sources */,
+				D30D0C911A62B1E70099DB97 /* UIbuttonAddBlock.m in Sources */,
 				D373A3121A32AACA001A3B11 /* AFHTTPRequestOperation.m in Sources */,
 				D31D4E301A55D603005D2256 /* UIViewController+AMSlideMenu.m in Sources */,
 				D31D4E191A55C90B005D2256 /* AMMainVC.m in Sources */,

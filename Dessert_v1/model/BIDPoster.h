@@ -11,7 +11,7 @@
 @interface BIDPoster : NSObject
 @property (nonatomic,copy)NSString *Title;
 @property (nonatomic,copy)NSString *PosterInput;
-@property (nonatomic)NSString *User_ID;
+@property (nonatomic)NSNumber *User_ID;
 @property (nonatomic)NSInteger VisitNum;
 @property (nonatomic)NSInteger FavorNum;
 @property(nonatomic)NSInteger LoveNum;
@@ -20,6 +20,7 @@
 @property (nonatomic,strong)NSString* PostTime;
 @property (nonatomic,assign)NSInteger PosterID;
 @property  (nonatomic,assign)NSString* User_Name;
+@property (nonatomic,strong)NSString *Token;
 /*
  {"newPoster": {
  "User_ID":"6",

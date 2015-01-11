@@ -55,28 +55,36 @@
     BIDPoster *poster=[[BIDPoster alloc]init];
     poster.PosterInput=self.PosterText.text;
     poster.User_ID=[BIDAccount GetAccount].user_id;
+    poster.token=[BIDAccount GetAccount].token;
     poster.Title=@"this tiel";
     poster.PostTime=[BIDCommeMeathod MakeJsonDate:[NSDate date]];
     
     NSDictionary *postedictionary=[BIDObjectToNsDictionary getObjectData:poster];
     NSDictionary *newPoster=[[NSDictionary alloc]initWithObjectsAndKeys:postedictionary,@"newPoster", nil];
+    NSLog(@"%@",newPoster);
     NSString *url=[[NSString alloc]initWithFormat:@"%@%@",@PoserUrl,@savePosterUrl];
     [self HUDShow];
     [BIDAFNetWork PostDataFromNet:url InputParas:newPoster success:^(NSDictionary *resultDic) {
         NSString *result=[[NSString alloc]initWithFormat:@"%@",[resultDic objectForKey:@"SavePosterResult"]];
+        [self HUDDismiss];
         if ([result isEqualToString:KEY_POST_SUCCESS]) {
             BIDPosterCellModel *cellmodel=[[BIDPosterCellModel alloc]init];
             [cellmodel GetPostersFromNet:0 pageEnd:10];
             [self.navigationController popViewControllerAnimated:YES];
-            [self HUDDismiss];
             
+            
+        }else if([result isEqualToString:KEY_REGISTER_ERROR]){
+            
+            NSLog(@"post failed meet error");
         }else{
             
-            NSLog(@"post failed");
+            NSLog(@"POST NOT AUTHORIZE");
         }
+        
         
     } failure:^(NSError *error) {
         NSLog(@"create new poster failed %@",error);
+        [self HUDDismiss];
     }];
 }
 @end

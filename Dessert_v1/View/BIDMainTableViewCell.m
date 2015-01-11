@@ -10,11 +10,13 @@
 #import "UIImageView+comm.h"
 #import "NSString+comm.h"
 #import "BIDCommcode.h"
+#import "BIDAccount.h"
 @implementation BIDMainTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
     [self TapImage];
+    [self setButtonAction];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -35,17 +37,19 @@
         [self.UserImage addGestureRecognizer:gesture];
     }
 }
+
+
 - (void)UserImageTough {
     if (self.delegate!=nil &&[self.delegate respondsToSelector:@selector(UserImageClick)]) {
         [self.delegate UserImageClick];
     }
 }
+#pragma each cell height
 -(CGFloat)cellHeight{
     CGFloat cellheight=80;
     CGFloat cellposterY=self.PosterContent.frame.origin.y;
     CGSize cellposterSize=[self GetLableSize:self.PosterContent];
     CGFloat height=cellposterSize.height;
-    
     CGFloat resultheight=MAX(0, height+cellposterY-80+10);
     cellheight+=resultheight;
     return cellheight;
@@ -56,5 +60,30 @@
     CGSize size=CGSizeMake(kScreen_Width-self.UserImage.frame.origin.x-self.UserImage.frame.size.width-50-32, 1000);
     resultSize=[labelText getCGSizeWithFont:label.font constrainedSize:size];
     return resultSize;
+}
+
+#pragma button up and down vote
+-(void)setButtonAction{
+    [self.upVote addBlcok:^(id obj) {
+        if ([self checkPosterOwer]) {
+              NSLog(@"vote up %d",self.ownerId.intValue);
+            
+        }
+    }];
+    [self.downVote addBlcok:^(id obj) {
+        if ([self checkPosterOwer]) {
+            NSLog(@"vote down %d",self.ownerId.intValue);
+        }
+        
+    }];
+}
+-(BOOL)checkPosterOwer{
+    if (self.ownerId==[BIDAccount GetAccount].user_id) {
+        UIAlertView *alterview=[[UIAlertView alloc]initWithTitle:@"提示" message:@"Sorry,你不能给自己投票啦" delegate:nil cancelButtonTitle:@"好吧" otherButtonTitles:nil];
+        [alterview show];
+        return NO;
+    }
+    return YES;
+    
 }
 @end

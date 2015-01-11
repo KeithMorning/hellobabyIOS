@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface BIDUser : NSObject
-@property NSString *username;
-@property NSString *user_id;
+@property (strong,nonatomic)NSString *username;
+@property (strong,nonatomic)NSNumber *user_id;
 @property(strong,nonatomic) NSString *Email;
 @property(strong,nonatomic)NSString *PhotoUrl;
 @property (strong,nonatomic)NSString *Sex;

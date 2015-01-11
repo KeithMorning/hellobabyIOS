@@ -46,12 +46,14 @@
         }else if([loginStatus isEqual:KEY_LOGIN_ERROR]){
             NSLog(@"Login Failed");
         }else{
+            NSLog(@"%@",result);
             BIDAccount *account=[BIDAccount GetAccount];
             account.username=[result objectForKey:@"UserName"];
             account.user_id=[result objectForKey:@"UserId"];
             account.Email=[result objectForKey:@"Email"];
             account.PhotoUrl=[result objectForKey:@"PhotoUrl"];
             account.Role=[result objectForKey:@"Role"];
+            account.token=[result objectForKey:@"Token"];
             [self saveUserPassword];//保存密码用户名
             [self performSegueWithIdentifier:@"toMainPage" sender:self];
             

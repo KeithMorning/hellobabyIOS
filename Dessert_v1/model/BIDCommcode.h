@@ -12,6 +12,7 @@
 #define KEY_LOGIN_ERROR    @"E"
 #define KEY_REGISTER_SUCCESS @"1"
 #define KEY_REGISTER_ERROR  @"0"
+#define KEY_POST_UNAUTHORIZE @"2"
 #define KEY_POST_FAILED @"0"
 #define KEY_POST_SUCCESS @"1"
 #define  ServerUrl "http://192.168.211.1/ServiceForIOS.svc/"

@@ -9,5 +9,6 @@
 #import "BIDUser.h"
 
 @interface BIDAccount : BIDUser<NSCoding>
+@property(nonatomic,strong) NSString *token;
 +(instancetype)GetAccount;
 @end

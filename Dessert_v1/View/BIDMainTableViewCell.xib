@@ -31,7 +31,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDr-as-cM1">
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDr-as-cM1" customClass="UIbuttonAddBlock">
                         <rect key="frame" x="681" y="52" width="50" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="AeU-yI-7sC"/>
@@ -51,7 +51,7 @@
                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIw-Lq-yCA">
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIw-Lq-yCA" customClass="UIbuttonAddBlock">
                         <rect key="frame" x="681" y="8" width="50" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="I9I-vb-gPi"/>
@@ -87,8 +87,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="PosterContent" destination="7od-oG-cTm" id="hVD-BS-OaP"/>
+                <outlet property="Scores" destination="97V-9r-IDe" id="i6T-gA-qBr"/>
                 <outlet property="UserImage" destination="Zbf-U6-VwS" id="h4G-GJ-uDg"/>
                 <outlet property="Username" destination="hs2-ef-1AY" id="YVO-h8-jas"/>
+                <outlet property="downVote" destination="GDr-as-cM1" id="VMd-8v-peg"/>
+                <outlet property="upVote" destination="UIw-Lq-yCA" id="NTT-O1-sCb"/>
             </connections>
             <point key="canvasLocation" x="162" y="138"/>
         </tableViewCell>

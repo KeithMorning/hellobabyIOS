@@ -149,8 +149,15 @@ static NSString *cellLableImage=@"cellLableImage";
     
     [BIDAFNetWork upLoadImage:editedImage Urlstring:@"UploadFile" name:[self CreateUserImageName] successBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"success %@",responseObject);
-        [BIDAccount GetAccount].PhotoUrl=[responseObject objectForKey:@"SaveImageResult"];
+        NSString *photourl=[responseObject objectForKey:@"SaveImageResult"];
+        if ([photourl isEqualToString:KEY_POST_UNAUTHORIZE]) {
+            NSLog(@"this action need login!");
+        }else if([photourl isEqualToString:KEY_POST_FAILED]){
+            NSLog(@"service meet error!");
+        }else{
+        [BIDAccount GetAccount].PhotoUrl=photourl;
         [self.tableView reloadData];
+        }
     } failureBlcok:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"failed,%@",error);
     } processBlock:^(CGFloat processvalue) {
@@ -181,11 +188,12 @@ static NSString *cellLableImage=@"cellLableImage";
 #pragma  create the photo name
 -(NSString *)CreateUserImageName{
     BIDAccount *account=[BIDAccount GetAccount];
-    NSString *userId=account.user_id;
+    NSNumber *userId=account.user_id;
     NSDateFormatter *dateForm=[[NSDateFormatter alloc]init];
     [dateForm setDateFormat:@"yyyyMMddHHmmss"];
     NSString *date_str=[dateForm stringFromDate:[NSDate date]];
-    NSString *createName=[NSString stringWithFormat:@"%@_%@.jpg",date_str,userId];
+    NSString *createName=[NSString stringWithFormat:@"%@_%@_%d.jpg",account.token,date_str,userId.intValue];
+    NSLog(@"%@",createName);
     return createName;
 }
 

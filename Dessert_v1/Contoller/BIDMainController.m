@@ -148,11 +148,15 @@
     }
     NSInteger rownum=indexPath.row;
     NSDictionary *poster=[posters objectAtIndex:rownum];
-    //DebugLog(poster);
+    //NSLog(@"%@",poster);
     cell.Username.text=[poster objectForKey:@"User_Name"];
     cell.PosterContent.text=[poster objectForKey:@"PosterInput"];
+    NSNumber *scores=[poster objectForKey:@"ScoresNum"];
+    cell.Scores.text=[NSString stringWithFormat:@"%d",scores.intValue-1];
+    cell.posterId=[poster objectForKey:@"PosterID"];
+    cell.ownerId=[poster objectForKey:@"User_ID"];
     NSString *str_photourl=[poster objectForKey:@"UserPhoto"];
-    if (![str_photourl isEqualToString:@""]) {
+    if (![str_photourl isEqualToString:@"ScoresNum"]) {
         NSString *mainurl=@Key_MainUrl;
         str_photourl=[mainurl stringByAppendingString:str_photourl];
         NSURL *photoUrl=[NSURL URLWithString:str_photourl];
@@ -164,15 +168,6 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     BIDMainTableViewCell *cell=(BIDMainTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    /*
-     //通过文件预排版得出尺寸未完成
-    NSString *text=cell.PosterContent.text;
-    CGRect rsize = [text boundingRectWithSize:cell.PosterContent.bounds.size options:NSStringDrawingUsesLineFragmentOrigin attributes:nil context:nil];
-    
-    CGFloat height = MAX(rsize.size.height, cell.bounds.size.height);
-    
-    return height;
-     */
     return [cell cellHeight];
 }
 
