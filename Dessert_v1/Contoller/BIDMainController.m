@@ -173,11 +173,11 @@
     
     return height;
      */
-    return cell.bounds.size.height;
+    return [cell cellHeight];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self performSegueWithIdentifier:@"ToPosterDetail" sender:self];
+  //  [self performSegueWithIdentifier:@"ToPosterDetail" sender:self];
 }
 #pragma BIDMainController delegate
 #pragma didselected
@@ -187,5 +187,6 @@
 #pragma userImageClick
 -(void)UserImageClick{
     [self performSegueWithIdentifier:@"ToPosterDetail" sender:self];
+    NSLog(@"to user info");
 }
 @end

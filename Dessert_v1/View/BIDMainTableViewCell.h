@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *Username;
 @property (weak, nonatomic) IBOutlet UILabel *PosterContent;
 @property (strong,nonatomic)id<mainCellDelegate> delegate;
-- (IBAction)UserImageTough:(id)sender;
+- (void)UserImageTough;
 -(instancetype)initItentifier:(NSString *)reuseIdentifier;
--(void)setHeight;
+-(CGFloat)cellHeight;
 @end

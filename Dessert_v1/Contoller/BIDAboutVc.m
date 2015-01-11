@@ -9,6 +9,7 @@
 #import "BIDAboutVc.h"
 #import  "BIDAFNetWork.h"
 #import "BIDAccount.h"
+#import "NSObject+ObjectMap.h"
 @interface BIDAboutVc ()
 
 @end
@@ -34,67 +35,8 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)changeImage:(id)sender {
-    UIActionSheet *actionsheet=[[UIActionSheet alloc]initWithTitle:@"更换头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册", nil];
-    [actionsheet showInView:[UIApplication sharedApplication].keyWindow];
-}
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex==2) {
-        return;
-    }
-    UIImagePickerController *imagepickervc=[[UIImagePickerController alloc]init];
-    imagepickervc.allowsEditing=YES;
-    imagepickervc.delegate=self;
-    switch (buttonIndex) {
-        case 0:
-            imagepickervc.sourceType=UIImagePickerControllerSourceTypeCamera;
-            break;
-        case 1:
-            imagepickervc.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
-            break;
-    }
-    [self presentViewController:imagepickervc animated:YES completion:nil];
-}
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *editedImage,*orginalImage;
-    editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
-    
-    [BIDAFNetWork upLoadImage:editedImage Urlstring:@"UploadFile" name:[self CreateUserImageName] successBlock:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"success %@",responseObject);
-        [BIDAccount GetAccount].PhotoUrl=[responseObject objectForKey:@"SaveImageResult"];
-    } failureBlcok:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"failed,%@",error);
-    } processBlock:^(CGFloat processvalue) {
-        NSLog(@"%f",processvalue);
-    }];
-    
-    if (picker.sourceType==UIImagePickerControllerSourceTypeCamera) {
-        orginalImage=[info objectForKey:UIImagePickerControllerOriginalImage];
-        SEL selectorToCall=@selector(image:didFinishSavingWithError:contextInfo:);
-        UIImageWriteToSavedPhotosAlbum(orginalImage, self, selectorToCall, NULL);
-    }
-    
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    
-}
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-    if (error==nil) {
-        NSLog(@"save successfully");
-    }else{
-        NSLog(@"save failed %@",error);
-    }
-}
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
--(NSString *)CreateUserImageName{
-    BIDAccount *account=[BIDAccount GetAccount];
-    NSString *userId=account.user_id;
-    NSDateFormatter *dateForm=[[NSDateFormatter alloc]init];
-    [dateForm setDateFormat:@"yyyyMMddHHmmss"];
-    NSString *date_str=[dateForm stringFromDate:[NSDate date]];
-    NSString *createName=[NSString stringWithFormat:@"%@_%@.jpg",date_str,userId];
-    return createName;
+-(IBAction)changeImage:(id)sender{
+    NSDictionary *dic=@{@"key":@"good",@"key2":[BIDAccount GetAccount]};
+    NSLog(@"%@",dic);
 }
 @end

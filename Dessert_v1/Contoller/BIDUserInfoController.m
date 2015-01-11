@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title=@"个人信息";
 }
 
 - (void)didReceiveMemoryWarning {
