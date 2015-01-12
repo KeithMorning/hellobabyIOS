@@ -37,9 +37,10 @@
                             <constraint firstAttribute="height" constant="15" id="AeU-yI-7sC"/>
                             <constraint firstAttribute="width" constant="50" id="Hdj-3W-Jns"/>
                         </constraints>
-                        <state key="normal" image="poster_arrow_down.png">
+                        <state key="normal" image="poster_arrow_downs.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <state key="highlighted" image="poster_blue_arrow_downs.png"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97V-9r-IDe">
                         <rect key="frame" x="681" y="34" width="50" height="10"/>
@@ -60,6 +61,7 @@
                         <state key="normal" image="poster_arrow_ups.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <state key="highlighted" image="poster_blue_arrow_ups.png"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7od-oG-cTm">
                         <rect key="frame" x="66" y="36" width="615" height="14"/>
@@ -86,8 +88,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="LabelScores" destination="97V-9r-IDe" id="xSy-q4-NR6"/>
                 <outlet property="PosterContent" destination="7od-oG-cTm" id="hVD-BS-OaP"/>
-                <outlet property="Scores" destination="97V-9r-IDe" id="i6T-gA-qBr"/>
                 <outlet property="UserImage" destination="Zbf-U6-VwS" id="h4G-GJ-uDg"/>
                 <outlet property="Username" destination="hs2-ef-1AY" id="YVO-h8-jas"/>
                 <outlet property="downVote" destination="GDr-as-cM1" id="VMd-8v-peg"/>
@@ -97,8 +99,10 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="poster_arrow_down.png" width="30" height="30"/>
+        <image name="poster_arrow_downs.png" width="30" height="30"/>
         <image name="poster_arrow_ups.png" width="30" height="30"/>
+        <image name="poster_blue_arrow_downs.png" width="30" height="30"/>
+        <image name="poster_blue_arrow_ups.png" width="30" height="30"/>
         <image name="profile-image-placeholder" width="50" height="50"/>
     </resources>
 </document>
