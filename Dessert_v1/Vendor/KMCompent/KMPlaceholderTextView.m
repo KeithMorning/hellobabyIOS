@@ -15,7 +15,7 @@
 @end
 @implementation KMPlaceholderTextView
 -(void)awakeFromNib{
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(TextChange:) name:UITextViewTextDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(TextChange) name:UITextViewTextDidChangeNotification object:nil];
     self.scrollEnabled=NO;
     
 }
@@ -27,7 +27,7 @@
         _placeText=placeText;
         _placeColor=placeColor;
         _Textnil=YES;
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(TextChange:) name:UITextViewTextDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(TextChange) name:UITextViewTextDidChangeNotification object:nil];
         
     }
     return self;
@@ -55,7 +55,7 @@
     self.viewSize(size);
 }
 #pragma mark 隐藏或显示placeText
--(void)TextChange:(NSNotification *)notification{
+-(void)TextChange{
     if (self.text.length==0) {
         _Textnil=YES;
     }else{
@@ -114,7 +114,7 @@
 -(void)setPlaceText:(NSString *)placeText{
     _placeText=placeText;
     _placeTextLab.text=placeText;
-    [self TextChange:nil];
+    [self TextChange];
 }
 
 -(void)dealloc{

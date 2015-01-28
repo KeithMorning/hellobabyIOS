@@ -73,13 +73,14 @@
     
     if (_Inputview.Textnil) {
         [_sendButton setBackgroundImage:[UIImage imageNamed:@"send_arrow_left@2x.png"] forState:UIControlStateNormal];
-          CGRect buttonFram=CGRectMake(self.frame.size.width-K_right_padding+10, 6, 33, 33);
+        CGRect buttonFram=CGRectMake(self.frame.size.width-K_right_padding+10, 6, 33, 33);
         _sendButton.frame=buttonFram;
     }else{
         [_sendButton setBackgroundImage:[UIImage imageNamed:@"send_blue_arrow_left@2x.png"] forState:UIControlStateNormal];
         [self resetSendButtonPostion:size];
     }
 }
+
 #pragma mark sendbutton发送
 -(void)sendMessage:(void (^)(NSString * text))inputText{
     if (inputText) {
@@ -94,7 +95,10 @@
         return;
     }else{
         self.sendText(_Inputview.text);
+        _Inputview.Textnil=YES;
         _Inputview.text=@"";
+        [_Inputview TextChange];
+       
     }
 }
 #pragma mark 处理键盘显示通知

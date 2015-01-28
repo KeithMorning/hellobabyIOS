@@ -14,4 +14,5 @@
 @property (nonatomic,assign) BOOL Textnil;//输入框是否为空
 -(instancetype)initWithFrame:(CGRect)frame PlaceText:(NSString *)placeText PlaceColor:(UIColor *)placeColor;
 -(void)TextViewSizeChange:(void(^)(CGSize))Textviewsize;
+-(void)TextChange;
 @end
