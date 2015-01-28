@@ -329,25 +329,6 @@
             </objects>
             <point key="canvasLocation" x="4090" y="272"/>
         </scene>
-        <!--Poster Detail Controller-->
-        <scene sceneID="OgR-mF-cG4">
-            <objects>
-                <viewController id="Cb5-5c-cZ1" customClass="BIDPosterDetailController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="M4c-yn-iTx"/>
-                        <viewControllerLayoutGuide type="bottom" id="4x9-ti-JAd"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="aaw-0P-Ivd">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Eam-C9-LFU"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rFH-PW-YsP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4167" y="1710"/>
-        </scene>
         <!--欢迎-->
         <scene sceneID="PVN-SD-pWY">
             <objects>
@@ -375,8 +356,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="MainTableView" destination="cc7-oV-gar" id="GmG-La-ceA"/>
-                        <segue destination="Cb5-5c-cZ1" kind="push" identifier="ToPosterDetail" id="nwu-mj-UuY"/>
                         <segue destination="V7H-ea-MW9" kind="push" identifier="ToUserDetail" id="o8E-Jm-Y6o"/>
+                        <segue destination="qWf-ox-Jog" kind="push" identifier="ToPosterDetail" id="Lka-gB-3eX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vT6-ah-dl1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -468,7 +449,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="KhH-WD-blq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="dUi-Jl-P8Q" id="nta-Uh-bxf"/>
                             <outlet property="delegate" destination="dUi-Jl-P8Q" id="amF-yw-848"/>
@@ -478,7 +459,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bd5-ca-ajP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2917" y="1912"/>
+            <point key="canvasLocation" x="3069" y="1888"/>
+        </scene>
+        <!--Poster Detail Controller-->
+        <scene sceneID="Fat-Wf-0Za">
+            <objects>
+                <viewController id="qWf-ox-Jog" customClass="BIDPosterDetailController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nMA-ax-X3z"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kua-TX-YvD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="N2o-3l-Nmz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5Ga-i5-ot2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="taf-Lu-oCy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3561" y="1665"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9nj-xe-FyG">

@@ -40,13 +40,13 @@
         [self setActivityViewOff];
         NSDictionary *result=[resultDic objectForKey:@"LoginResult"];
         NSString *loginStatus=[result objectForKey:@"LoginStatus"];
-        NSLog(@"%@",result);
+        //NSLog(@"%@",result);
         if([loginStatus isEqual:KEY_LOGIN_NOT_PASS]){
             NSLog(@"Password or  Username is not right");
         }else if([loginStatus isEqual:KEY_LOGIN_ERROR]){
             NSLog(@"Login Failed");
         }else{
-            NSLog(@"%@",result);
+           // NSLog(@"%@",result);
             BIDAccount *account=[BIDAccount GetAccount];
             account.username=[result objectForKey:@"UserName"];
             account.user_id=[result objectForKey:@"UserId"];

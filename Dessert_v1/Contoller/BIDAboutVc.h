@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BIDAboutVc : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface BIDAboutVc : UIViewController<UITableViewDelegate,UITableViewDataSource>
 - (IBAction)changeImage:(id)sender;
 
 @end

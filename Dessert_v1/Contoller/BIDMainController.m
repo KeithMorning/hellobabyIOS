@@ -148,7 +148,7 @@
     }
     NSInteger rownum=indexPath.row;
     NSDictionary *poster=[posters objectAtIndex:rownum];
-    NSLog(@"%@",poster);
+   // NSLog(@"%@",poster);
     cell.Username.text=[poster objectForKey:@"User_Name"];
     cell.PosterContent.text=[poster objectForKey:@"PosterInput"];
     cell.Scores=[poster objectForKey:@"ScoresNum"];
@@ -173,7 +173,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-  //  [self performSegueWithIdentifier:@"ToPosterDetail" sender:self];
+    [self performSegueWithIdentifier:@"ToPosterDetail" sender:self];
 }
 #pragma BIDMainController delegate
 #pragma didselected
