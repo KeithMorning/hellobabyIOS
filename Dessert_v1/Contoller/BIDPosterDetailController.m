@@ -8,6 +8,8 @@
 
 #import "BIDPosterDetailController.h"
 #import "KMMessagView.h"
+#import "BIDPosterDetailHeader.h"
+#import "UIView+subline.h"
 @interface BIDPosterDetailController ()
 @property (nonatomic,strong)UITableView *myTableView;
 @end
@@ -29,13 +31,17 @@
     CGRect viewframe=[UIScreen mainScreen].bounds;
     self.view=[[UIView alloc]initWithFrame:viewframe];
     _myTableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         tableView.backgroundColor = [UIColor whiteColor];
         tableView.dataSource = self;
         tableView.delegate = self;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier: @"TitleValueCell"];
+         BIDPosterDetailHeader *Postercell=[[BIDPosterDetailHeader alloc]init];
+        [Postercell addSubLine:[UIColor lightGrayColor] WithborderWidth:1.0];
+        tableView.tableHeaderView=Postercell;
         [self.view addSubview:tableView];
+        
         tableView;
     });
     CGSize size=[UIScreen mainScreen].bounds.size;
@@ -49,15 +55,8 @@
 
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+#pragma mark tabelView delegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 3;
 }
@@ -68,6 +67,9 @@
     
     UITableViewCell *tablecell=[[UITableViewCell alloc]init];
     tablecell.textLabel.text=@"good";
+    tablecell.imageView.image=[UIImage imageNamed:@"placeholderRound25@2x"];
     return tablecell;
+
+    
 }
 @end

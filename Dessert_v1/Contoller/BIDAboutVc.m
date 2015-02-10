@@ -7,10 +7,11 @@
 //
 
 #import "BIDAboutVc.h"
-#import  "BIDAFNetWork.h"
-#import "BIDAccount.h"
-#import "NSObject+ObjectMap.h"
-#import "KMMessagView.h"
+#import "UIView+subline.h"
+#import "NSDate+Helper.h"
+#import "NSDate+comm.h"
+#import "BIDPosterDetailHeader.h"
+#import "test.h"
 @interface BIDAboutVc ()
 @property (nonatomic,strong)UITableView *myTableView;
 @end
@@ -20,6 +21,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    BIDPoster *poster=[[BIDPoster alloc]init];
+    poster.User_Name=@"gg";
+    poster.PosterInput=@"124";
+    poster.commentNum=2;
+    poster.User_ID=@24;
+    poster.UserPhoto=@"imagesUpLoad/UserPhoto/20150112012844_24.jpg";
+    poster.ScoresNum=20;
+    poster.PostTime=@"/Date(1420959013000+0800)/";
+    
+    BIDPosterDetailHeader *view=[[BIDPosterDetailHeader alloc]initWithFrame:CGRectMake(0  , 200, [UIScreen mainScreen].bounds.size.width, 300) withPoster:poster];
+    [view setBackgroundColor:[UIColor redColor]];
+    //test *view=[[test alloc]initWithFrame:CGRectMake(100, 100, 100, 300)];
+    [self.view addSubview:view];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,55 +41,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 -(IBAction)changeImage:(id)sender{
-    NSDictionary *dic=@{@"key":@"good",@"key2":[BIDAccount GetAccount]};
-    NSLog(@"%@",dic);
-}
--(void)loadView{
-    [super loadView];
-    CGRect viewframe=[UIScreen mainScreen].bounds;
-    //viewframe.size.height-=(44);
-    self.view=[[UIView alloc]initWithFrame:viewframe];
-    _myTableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-       // tableView.backgroundColor = kColorTableSectionBg;
-        tableView.dataSource = self;
-        tableView.delegate = self;
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-       [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier: @"TitleValueCell"];
-        [self.view addSubview:tableView];
-        tableView;
-    });
-    CGSize size=[UIScreen mainScreen].bounds.size;
-    NSLog(@"%f",size.height);
-    CGRect frame=CGRectMake(0,size.height, size.width, 45);
-    KMMessagView *messagebox=[[KMMessagView alloc]initWithFrame:frame PlaceText:@"评论" PlaceColor:[UIColor lightGrayColor]];
-    [messagebox sendMessage:^(NSString *text) {
-        NSLog(@"send:%@",text);
-    }];
-    [self.view addSubview:messagebox];
-    [self.view setBackgroundColor:[UIColor redColor]];
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    NSDate *date=[NSDate date];
+    NSDateFormatter *df=[[NSDateFormatter alloc]init];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateStr=@"2015-01-20 22:10:10";
+    NSDate *dateold=[df dateFromString:dateStr];
+   //NSLog(@"%ld %ld",[dateold daysAgoAgainstMidnight],[dateold daysAgo]);
+    NSLog(@"%@",[dateold stringTimeAgo]);
+    
     
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"good"];
-    cell.textLabel.text=[NSString stringWithFormat:@"%d",indexPath.row];
-    return cell;
-}
+
 @end

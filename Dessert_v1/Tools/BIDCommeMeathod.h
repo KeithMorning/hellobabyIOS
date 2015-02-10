@@ -18,5 +18,6 @@
 +(NSDate *)GetLocalTimeNowFromstr:(NSString *)dateString;
 +(NSString *)MakedatetoStr:(NSDate *)date;
 +(NSString *)MakeJsonDate:(NSDate *)date;
++ (NSDate *)DateFromDotNetJSONString:(NSString *)string;
 @end
 

@@ -21,6 +21,9 @@
 @property (nonatomic,assign)NSInteger PosterID;
 @property  (nonatomic,assign)NSString* User_Name;
 @property (nonatomic,strong)NSString *Token;
+@property (nonatomic,strong)NSString * UserPhoto;
+@property NSInteger VoteFlag;
+@property NSInteger commentNum;
 /*
  {"newPoster": {
  "User_ID":"6",

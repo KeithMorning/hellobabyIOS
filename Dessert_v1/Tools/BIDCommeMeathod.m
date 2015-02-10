@@ -47,8 +47,8 @@ static NSUserDefaults *UserDef;
             seconds += [[NSString stringWithFormat:@"%@%@", sign, [string substringWithRange:[regexResult rangeAtIndex:3]]] doubleValue] * 60.0 * 60.0;
             // minutes
             seconds += [[NSString stringWithFormat:@"%@%@", sign, [string substringWithRange:[regexResult rangeAtIndex:4]]] doubleValue] * 60.0;
-        }
-        */
+        }*/
+        
         return [NSDate dateWithTimeIntervalSince1970:seconds];
     }
     return nil;
@@ -63,7 +63,6 @@ static NSUserDefaults *UserDef;
 +(NSDate *)GetLocalTimeNow:(NSDate *)date{
     NSTimeZone *timezone=[NSTimeZone systemTimeZone];
     NSInteger interval=[timezone secondsFromGMTForDate:date];
-   // NSDate *dateww=[];
     NSDate *localdate=[date dateByAddingTimeInterval:interval];
     return localdate;
 }

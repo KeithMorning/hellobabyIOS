@@ -68,15 +68,6 @@
 
 #pragma button up and down vote
 -(void)setButtonAction{
-    NSString *user_id=[NSString stringWithFormat:@"%d",[BIDAccount GetAccount].user_id.intValue];
-    NSString *poster_id=[NSString stringWithFormat:@"%d",self.posterId.intValue];
-    NSString *token=[BIDAccount GetAccount].token;
-    NSString *baseUrl=@PoserUrl;
-    NSString *paras=[NSString stringWithFormat:@"%@/%@/%@",user_id,poster_id,token];
-    NSString *voteUpUrl=[NSString stringWithFormat:@"%@%@%@",baseUrl,key_vote_up_url,paras];
-   // NSString *voteDownUrl=[NSString stringWithFormat:@"%@%@%@",baseUrl,key_vote_down_url,paras];
-   // NSString *voteCancelUrl=[NSString stringWithFormat:@"%@%@%@",baseUrl,key_vote_cancel_url,paras];
-   // NSLog(@"%@",voteUpUrl);
     [self.upVote addBlcok:^(id obj) {
         if ([self checkPosterOwer]) {
             NSString *voteCancelUrl=[self getActionUrl:0];
